@@ -1,7 +1,6 @@
 import { observer } from "mobx-react-lite"
 import { useState } from "react"
 import todoStore from "./TodoStore"
-import { toJS } from "mobx"
 
 
 const Todo = () => {
