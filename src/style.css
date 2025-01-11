@@ -41,3 +41,8 @@ input {
   gap: 1rem;
   align-items: center;
 }
+
+.list.done p {
+  color: rgba(255, 255, 255, 0.549);
+  text-decoration: line-through;
+}

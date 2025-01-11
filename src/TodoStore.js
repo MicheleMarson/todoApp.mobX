@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable } from "mobx"
+import { action, computed, makeObservable, observable, toJS } from "mobx"
 
 class TodoStore {
   constructor(){
@@ -10,7 +10,8 @@ class TodoStore {
       todoList: observable,
       isEmpty: computed,
       addTodo: action,
-      removeTodo: action
+      removeTodo: action,
+      isDone: action
     })
 
     // load todoList from localStorage when the store is created
@@ -21,10 +22,21 @@ class TodoStore {
     return this.todoList.length === 0 ? true : false
   }
 
+  isDone(id){
+    const todo = this.todoList.find(todo => todo.id === id)
+    
+    if(todo){
+      todo.done = !todo.done
+      this.saveToLocalStorage()
+    }
+    
+  }
+
   addTodo(todo){
     const newTodo = {
       id: Date.now(),
-      content: todo
+      content: todo,
+      done: false
     }
 
     this.todoList.push(newTodo)
