@@ -18,11 +18,7 @@ const Todo = () => {
   }
 
   const changeTodoStatus = (id) => {
-    console.log("id id ", id);
-    
     todoStore.isDone(id)
-    console.log(toJS(todoStore));
-    
   }
   
 
