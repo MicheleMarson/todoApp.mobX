@@ -1,0 +1,43 @@
+body {
+  background: rgb(35, 35, 61);
+  color: white;
+}
+
+input {
+  outline: none;
+}
+
+.todo {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.todo h2 {
+  margin-bottom: 2rem;
+}
+
+.container {
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 600px;
+}
+
+.btn {
+  border: none;
+  background: rgb(54, 54, 88);
+  color: white;
+  padding: 6px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.btn:hover {
+  background: rgb(78, 78, 122);
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
