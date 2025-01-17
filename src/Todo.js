@@ -6,10 +6,12 @@ import TodoBox from "./TodoBox"
 
 const Todo = () => {
   const [todoInput, setTodoInput] = useState("")
+  
 
   const addTodo = () => {
     if(todoInput){
-      todoStore.addTodo(todoInput)
+      let trimedTodo = todoInput.trim().replace(/\s+/g, " ")
+      todoStore.addTodo(trimedTodo)
     }
     setTodoInput("")
   }
@@ -38,14 +40,16 @@ const Todo = () => {
           </select>
           <input type="text" placeholder="Find todo...." onChange={setTextFilter}/>
         </div>
-        {todoStore.isEmpty ? <p>Todo is empty!</p> : 
-        todoStore.filteredTodos.length === 0 ? <p>Nothing found....</p>
-        : (
-            todoStore.filteredTodos.map(todo => (
-              <TodoBox key={todo.id} todo={todo}/>
-            ))
-          )
-        }
+        <div className="todoList">
+          {todoStore.isEmpty ? <p>Todo is empty!</p> : 
+          todoStore.filteredTodos.length === 0 ? <p>Nothing found....</p>
+          : (
+              todoStore.filteredTodos.map(todo => (
+                <TodoBox key={todo.id} todo={todo}/>
+              ))
+            )
+          }
+        </div>
       </div>
     </div>
   )

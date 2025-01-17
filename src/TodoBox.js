@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import todoStore from "./TodoStore"
 import { observer } from "mobx-react-lite"
 
 const TodoBox = ({todo}) => {
+  const inputRef = useRef()
   const [editing, setEditing] = useState(false)
-  const [editedInput, setEditedInput] = useState("")
+  const [editedInput, setEditedInput] = useState(todo.content)
 
   const removeTodo = (todo) => {
     todoStore.removeTodo(todo)
@@ -15,20 +16,31 @@ const TodoBox = ({todo}) => {
   }
 
   const editTodo = (id) => {
-    setEditing(!editing)
-    if(editedInput){
-      todoStore.editTodo(id, editedInput)
+    if(editing && editedInput){
+      let trimedTodo = editedInput.trim().replace(/\s+/g, " ")
+      todoStore.editTodo(id, trimedTodo)
+      setEditedInput(trimedTodo)
     }
+    setEditing(!editing)
   }
 
+  // Focus the input element when editing is enabled
+  useEffect(() => {
+    if (editing && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [editing]);
+
   return(
-    <div className={`list ${todo.done?"done":""}`} key={todo.id}>
+    <div className={`list ${todo.done?"done":editing?"edit":""}`} key={todo.id}>
       {editing ? 
-      (<input type="text" value={editedInput} onChange={(e) => setEditedInput(e.target.value)} />) 
-      : (<p>{todo.content}</p>)}
-      <button onClick={() => removeTodo(todo.id)} className="btn">X</button>
-      <button onClick={() => editTodo(todo.id)} className="btn">{editing?"SAVE":"EDIT"}</button>
-      <button onClick={() => changeTodoStatus(todo.id)} className="btn">DONE</button>
+      (<input ref={inputRef} className="editing" type="text" value={editedInput} onChange={(e) => setEditedInput(e.target.value)} />) 
+      : (<p className="content">{todo.content}</p>)}
+      <div className="buttons">
+        <button onClick={() => removeTodo(todo.id)} className="btn">X</button>
+        <button disabled={todo.done} onClick={() => editTodo(todo.id)} className="btn">{editing?"SAVE":"EDIT"}</button>
+        <button onClick={() => changeTodoStatus(todo.id)} className="btn">DONE</button>
+      </div>
     </div>)
 }
 

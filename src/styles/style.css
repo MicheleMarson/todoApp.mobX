@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: rgb(35, 35, 61);
   color: white;
@@ -5,6 +11,17 @@ body {
 
 input {
   outline: none;
+  border: none;
+  height: 100%;
+  padding: 2px 6px;
+}
+
+.editing {
+  background: none;
+  color: #060d1c;
+  text-align: center;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .todo {
@@ -19,10 +36,11 @@ input {
 .container {
   padding: 1rem;
   margin: 1rem auto;
-  max-width: 600px;
+  max-width: 800px;
 }
 
 .btn {
+  border-radius: 5px;
   border: none;
   background: rgb(54, 54, 88);
   color: white;
@@ -31,18 +49,59 @@ input {
   font-weight: 800;
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+  background: rgb(91 91 107);
+}
+
+.btn:disabled:hover {
+  background: rgb(91 91 107);
+}
+
 .btn:hover {
   background: rgb(78, 78, 122);
 }
 
+.todoList {
+  margin: 1rem 0;
+}
+
 .list {
+  border-radius: 10px;
   display: flex;
-  justify-content: center;
+  /* grid-auto-rows: 1fr 10% 10%; */
   gap: 1rem;
+  padding: 6px 12px;
+  margin: 5px 0;
+  justify-content: space-between;
+  background: #060d1c;
   align-items: center;
+}
+
+.list.done {
+  background: #496bb3;
+}
+
+.buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.content {
+  flex-grow: 2;
+}
+
+.list.edit {
+  background: #8ff988;
 }
 
 .list.done p {
   color: rgba(255, 255, 255, 0.549);
   text-decoration: line-through;
+}
+
+@media (max-width:500px) {
+  .list {
+    flex-direction: column;
+  }
 }
