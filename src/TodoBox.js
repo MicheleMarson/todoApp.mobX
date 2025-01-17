@@ -22,6 +22,7 @@ const TodoBox = ({todo}) => {
       setEditedInput(trimedTodo)
     }
     setEditing(!editing)
+    
   }
 
   // Focus the input element when editing is enabled
@@ -29,6 +30,7 @@ const TodoBox = ({todo}) => {
     if (editing && inputRef.current) {
       inputRef.current.focus();
     }
+    console.log(editing);
   }, [editing]);
 
   return(
@@ -37,9 +39,9 @@ const TodoBox = ({todo}) => {
       (<input ref={inputRef} className="editing" type="text" value={editedInput} onChange={(e) => setEditedInput(e.target.value)} />) 
       : (<p className="content">{todo.content}</p>)}
       <div className="buttons">
-        <button onClick={() => removeTodo(todo.id)} className="btn">X</button>
-        <button disabled={todo.done} onClick={() => editTodo(todo.id)} className="btn">{editing?"SAVE":"EDIT"}</button>
-        <button onClick={() => changeTodoStatus(todo.id)} className="btn">DONE</button>
+        <button onClick={() => removeTodo(todo.id)} className="btn delete">X</button>
+        <button disabled={todo.done} onClick={() => editTodo(todo.id)} className="btn update">{editing?"SAVE":"EDIT"}</button>
+        <button disabled={editing} onClick={() => changeTodoStatus(todo.id)} className={`btn ${todo.done ? "done": ""}`}>DONE</button>
       </div>
     </div>)
 }

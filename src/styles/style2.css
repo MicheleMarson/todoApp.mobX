@@ -1,0 +1,60 @@
+.btn {
+  border-radius: 5px;
+  border: none;
+  background: #363658;
+  color: white;
+  padding: 6px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  background: #5b5b6b;
+}
+
+.btn:disabled:hover {
+  background: #5b5b6b;
+}
+
+.btn:hover {
+  background: #4e4e7a;
+}
+
+.btn.update {
+  width: 60px;
+}
+
+.buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.btn.done {
+  background: #398951;
+}
+
+.btn.delete:hover {
+  background: rgb(189 81 81);
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  max-width: 400px;
+  margin: auto;
+}
+
+.form input {
+  flex-grow: 2;
+  border: 2px solid #060d1c;
+  color: #060d1c;
+}
+
+.form button {
+  padding: 8px;
+  background: #060d1c;
+  border: none;
+  color: white;
+}

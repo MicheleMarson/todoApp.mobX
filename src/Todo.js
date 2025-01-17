@@ -26,9 +26,9 @@ const Todo = () => {
 
   return(
     <div className="todo">
-      <h2>Todo List</h2>
-      <div>
-        <input placeholder="Add todo..." type="text" value={todoInput} onChange={(e) => setTodoInput(e.target.value)}/>
+      <h2>Todo App</h2>
+      <div className="form">
+        <input className="addInput" placeholder="Add todo..." type="text" value={todoInput} onChange={(e) => setTodoInput(e.target.value)}/>
         <button onClick={addTodo}>Add</button>
       </div>
       <div className="container">
@@ -38,7 +38,7 @@ const Todo = () => {
             <option value={"completed"}>Completed</option>
             <option value={"active"}>Active</option>
           </select>
-          <input type="text" placeholder="Find todo...." onChange={setTextFilter}/>
+          <input type="text" placeholder="Search...." onChange={setTextFilter}/>
         </div>
         <div className="todoList">
           {todoStore.isEmpty ? <p>Todo is empty!</p> : 

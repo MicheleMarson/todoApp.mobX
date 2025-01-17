@@ -12,7 +12,6 @@ body {
 input {
   outline: none;
   border: none;
-  height: 100%;
   padding: 2px 6px;
 }
 
@@ -39,37 +38,13 @@ input {
   max-width: 800px;
 }
 
-.btn {
-  border-radius: 5px;
-  border: none;
-  background: rgb(54, 54, 88);
-  color: white;
-  padding: 6px;
-  cursor: pointer;
-  font-weight: 800;
-}
-
-.btn:disabled {
-  cursor: not-allowed;
-  background: rgb(91 91 107);
-}
-
-.btn:disabled:hover {
-  background: rgb(91 91 107);
-}
-
-.btn:hover {
-  background: rgb(78, 78, 122);
-}
-
 .todoList {
-  margin: 1rem 0;
+  margin: 1.6rem 0;
 }
 
 .list {
   border-radius: 10px;
   display: flex;
-  /* grid-auto-rows: 1fr 10% 10%; */
   gap: 1rem;
   padding: 6px 12px;
   margin: 5px 0;
@@ -82,15 +57,6 @@ input {
   background: #496bb3;
 }
 
-.buttons {
-  display: flex;
-  gap: 6px;
-}
-
-.content {
-  flex-grow: 2;
-}
-
 .list.edit {
   background: #8ff988;
 }
@@ -100,17 +66,38 @@ input {
   text-decoration: line-through;
 }
 
+.content,
+.filter input {
+  flex-grow: 2;
+}
+
 .filter {
   display: flex;
   justify-content: space-between;
 }
 
 .filter input {
-  flex-grow: 2;
+  background: none;
+  border: 2px solid #060d1c;
+  color: white;
 }
 
-@media (max-width:500px) {
+.filter select {
+  padding: 4px;
+  background: #060d1c;
+  color: white;
+  border: 1px solid #060d1c;
+  outline: none;
+}
+
+@media (max-width: 500px) {
   .list {
     flex-direction: column;
+  }
+}
+
+@media (max-width:380px) {
+  .filter {
+    flex-direction: column-reverse;
   }
 }
