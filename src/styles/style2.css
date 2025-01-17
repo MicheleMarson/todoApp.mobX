@@ -58,3 +58,8 @@
   border: none;
   color: white;
 }
+
+.form button:hover {
+  cursor: pointer;
+  background: #000207;
+}
