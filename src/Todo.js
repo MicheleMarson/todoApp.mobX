@@ -1,10 +1,12 @@
 import { observer } from "mobx-react-lite"
 import { useState } from "react"
 import todoStore from "./TodoStore"
+import TodoBox from "./TodoBox"
 
 
 const Todo = () => {
   const [todoInput, setTodoInput] = useState("")
+
   const addTodo = () => {
     if(todoInput){
       todoStore.addTodo(todoInput)
@@ -12,14 +14,13 @@ const Todo = () => {
     setTodoInput("")
   }
 
-  const removeTodo = (todo) => {
-    todoStore.removeTodo(todo)
+  const setFilter = (filter) => {
+    todoStore.setFilter(filter)
   }
 
-  const changeTodoStatus = (id) => {
-    todoStore.isDone(id)
+  const setTextFilter = (e) => {
+    todoStore.setTextFilter(e.target.value)
   }
-  
 
   return(
     <div className="todo">
@@ -29,14 +30,19 @@ const Todo = () => {
         <button onClick={addTodo}>Add</button>
       </div>
       <div className="container">
-        {todoStore.isEmpty ? "Todo is empty!" : 
-          (
-            todoStore.todoList.map(todo => (
-              <div className={`list ${todo.done?"done":""}`} key={todo.id}>
-                <p>{todo.content}</p>
-                <button onClick={() => removeTodo(todo.id)} className="btn">X</button>
-                <button onClick={() => changeTodoStatus(todo.id)} className="btn">DONE</button>
-              </div>
+        <div className="filter">
+          <select onChange={(e) => setFilter(e.target.value)}>
+            <option value={"all"}>All</option>
+            <option value={"completed"}>Completed</option>
+            <option value={"active"}>Active</option>
+          </select>
+          <input type="text" placeholder="Find todo...." onChange={setTextFilter}/>
+        </div>
+        {todoStore.isEmpty ? <p>Todo is empty!</p> : 
+        todoStore.filteredTodos.length === 0 ? <p>Nothing found....</p>
+        : (
+            todoStore.filteredTodos.map(todo => (
+              <TodoBox key={todo.id} todo={todo}/>
             ))
           )
         }
