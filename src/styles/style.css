@@ -30,7 +30,7 @@ input {
 }
 
 .todo h2 {
-  margin-bottom: 2rem;
+  margin: 2rem;
 }
 
 .container {
@@ -98,6 +98,15 @@ input {
 .list.done p {
   color: rgba(255, 255, 255, 0.549);
   text-decoration: line-through;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter input {
+  flex-grow: 2;
 }
 
 @media (max-width:500px) {
